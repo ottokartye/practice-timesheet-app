@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import TaskModal from './components/modals/TaskModal';
+import Dashboard from './pages/Dashboard';
+import Footer from './partials/Footer';
+import Navigation from './partials/Navigation';
+import Sidebar from './partials/Sidebar';
+import { TasksContext } from './TasksContext';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <TasksContext>
+
+        <Navigation />
+
+        <Sidebar />
+
+        <div className="content-wrapper">
+
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+          </Routes>
+
+        </div>
+
+        <Footer />
+      
+      </TasksContext>
+    </BrowserRouter>
   );
 }
 
